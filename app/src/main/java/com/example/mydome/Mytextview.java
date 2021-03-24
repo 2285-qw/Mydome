@@ -90,4 +90,6 @@ public class Mytextview extends View {
 
         setMeasuredDimension(width,height);
     }
+
+
 }
