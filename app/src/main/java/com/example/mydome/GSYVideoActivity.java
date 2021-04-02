@@ -7,6 +7,12 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.BaseAdapter;
+import android.widget.ListAdapter;
+import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.shuyu.gsyvideoplayer.GSYBaseActivityDetail;
@@ -25,23 +31,22 @@ public class GSYVideoActivity extends GSYBaseActivityDetail<StandardGSYVideoPlay
     StandardGSYVideoPlayer detailPlayer;
     String source1 = "https://vd3.bdstatic.com/mda-mctd1i9e7vuvugr9/1080p/cae_h264/1616894359/mda-mctd1i9e7vuvugr9.mp4?v_from_s=gz_haokan_4469&amp;auth_key=1616991828-0-0-0dfeae51c6a07f4dc266aab2017ffb99&amp;bcevod_channel=searchbox_feed&amp;pd=1&amp;pt=3&amp;abtest=3000159_2";
     List<MMM> list;
+    ListView mListView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_g_s_y_video_acyivity);
 
-        detailPlayer=findViewById(R.id.videoView);
-        
-        list=getList();
+        detailPlayer = findViewById(R.id.videoView);
+        mListView = findViewById(R.id.mlistview);
 
+        list = getList();
 
         resolveNormalVideoUI();
 
         //普通模式
         initVideo();
-
-
 
 
         detailPlayer.setIsTouchWiget(true);
@@ -64,10 +69,17 @@ public class GSYVideoActivity extends GSYBaseActivityDetail<StandardGSYVideoPlay
             }
         });
 
-        list.get(0).getUrl1();
-        Log.d("listeee", list.get(0).getUrl1());
-        detailPlayer.setUp(list.get(0).getUrl1().trim(),true,"ceshi");
-        //detailPlayer.getStartButton().callOnClick();
+        mListView.setAdapter(new MyAdapter());
+
+        detailPlayer.setUp(list.get(0).getUrl1().trim(), true, list.get(0).getName1());
+        mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                detailPlayer.setUp(list.get(position).getUrl1(),true,list.get(position).getName1());
+                detailPlayer.getStartButton().callOnClick();
+            }
+        });
     }
 
     @Override
@@ -113,23 +125,23 @@ public class GSYVideoActivity extends GSYBaseActivityDetail<StandardGSYVideoPlay
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        menu.add(1,1,1,"刷新列表");
-        menu.add(1,2,2,"作者信息");
+        menu.add(1, 1, 1, "刷新列表");
+        menu.add(1, 2, 2, "作者信息");
         return super.onCreateOptionsMenu(menu);
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()){
+        switch (item.getItemId()) {
             case 1:
                 System.out.println("刷新");
-                SimpleDateFormat simpleDateFormat=new SimpleDateFormat("yyyy-MM-dd-HH");
-                File file=new File(getApplicationContext().getFilesDir(),"video_file"+simpleDateFormat);
+                SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd-HH");
+                File file = new File(getApplicationContext().getFilesDir(), "video_file" + simpleDateFormat);
                 file.delete();
                 //loadVideolist();
                 break;
             case 2:
-                Toast.makeText(this,"作者信息：陈恩华",Toast.LENGTH_LONG).show();
+                Toast.makeText(this, "作者信息：陈恩华", Toast.LENGTH_LONG).show();
                 break;
         }
         return super.onOptionsItemSelected(item);
@@ -175,7 +187,7 @@ public class GSYVideoActivity extends GSYBaseActivityDetail<StandardGSYVideoPlay
                     MMM video = new MMM();
                     video.setName1(title);
                     video.setSize1(size);
-                    Log.d("PATH",path);
+                    Log.d("PATH", path);
                     video.setUrl1(path);
                     video.setDuration1(duration);
                     list.add(video);
@@ -184,5 +196,35 @@ public class GSYVideoActivity extends GSYBaseActivityDetail<StandardGSYVideoPlay
             }
         }
         return list;
+    }
+
+    private class MyAdapter extends BaseAdapter {
+        @Override
+        public int getCount() {
+            return list.size();
+        }
+
+        @Override
+        public Object getItem(int position) {
+            return null;
+        }
+
+        @Override
+        public long getItemId(int position) {
+            return 0;
+        }
+
+        @Override
+        public View getView(int position, View convertView, ViewGroup parent) {
+            View view = null;
+            if (convertView == null) {
+                view = View.inflate(getApplicationContext(), R.layout.item_listview, null);
+            } else {
+                view = convertView;
+            }
+            TextView name = view.findViewById(R.id.name);
+            name.setText(list.get(position).getName1());
+            return view;
+        }
     }
 }
