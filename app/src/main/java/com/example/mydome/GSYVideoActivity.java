@@ -1,5 +1,6 @@
 package com.example.mydome;
 
+import android.content.Context;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -8,13 +9,17 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import com.shuyu.gsyvideoplayer.GSYBaseActivityDetail;
 import com.shuyu.gsyvideoplayer.builder.GSYVideoOptionBuilder;
 import com.shuyu.gsyvideoplayer.listener.LockClickListener;
@@ -27,7 +32,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class GSYVideoActivity extends GSYBaseActivityDetail<StandardGSYVideoPlayer> {
-
     StandardGSYVideoPlayer detailPlayer;
     String source1 = "https://vd3.bdstatic.com/mda-mctd1i9e7vuvugr9/1080p/cae_h264/1616894359/mda-mctd1i9e7vuvugr9.mp4?v_from_s=gz_haokan_4469&amp;auth_key=1616991828-0-0-0dfeae51c6a07f4dc266aab2017ffb99&amp;bcevod_channel=searchbox_feed&amp;pd=1&amp;pt=3&amp;abtest=3000159_2";
     List<MMM> list;
@@ -35,6 +39,8 @@ public class GSYVideoActivity extends GSYBaseActivityDetail<StandardGSYVideoPlay
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_g_s_y_video_acyivity);
 
@@ -75,8 +81,16 @@ public class GSYVideoActivity extends GSYBaseActivityDetail<StandardGSYVideoPlay
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Log.d("url", list.get(position).getUrl1());
+                String s=list.get(position).getUrl1();
 
-                detailPlayer.setUp(list.get(position).getUrl1(),true,list.get(position).getName1());
+                String[] strs=s.split("/");
+                for(int i=0,len=strs.length;i<len;i++){
+                    System.out.print(strs[i].toString()+" ");
+                    Log.d("url",strs[strs.length-2].toString()+"");
+                }
+
+                detailPlayer.setUp(list.get(position).getUrl1(), true, list.get(position).getName1());
                 detailPlayer.getStartButton().callOnClick();
             }
         });
@@ -224,7 +238,28 @@ public class GSYVideoActivity extends GSYBaseActivityDetail<StandardGSYVideoPlay
             }
             TextView name = view.findViewById(R.id.name);
             name.setText(list.get(position).getName1());
+            ImageView imageView = view.findViewById(R.id.image);
+            Log.d("list",list.get(position).getUrl1());
+            loadCover(imageView, list.get(position).getUrl1(), GSYVideoActivity.this);
             return view;
         }
+    }
+
+    /**
+     * 加载第四秒的帧数作为封面
+     * url就是视频的地址
+     */
+    public static void loadCover(ImageView imageView, String url, Context context) {
+
+        imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
+        Glide.with(context)
+                .setDefaultRequestOptions(
+                        new RequestOptions()
+                                .frame(4000000)
+                                .centerCrop()
+
+                )
+                .load(url)
+                .into(imageView);
     }
 }

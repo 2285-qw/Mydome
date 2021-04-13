@@ -24,6 +24,7 @@ public class MainActivity extends AppCompatActivity {
         list=getList();
         Log.d("list",list+"=====");
 
+        //简单的回调
         myMethod(new main() {
             @Override
             public String call() {
@@ -53,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
         public void eat();
     }
 
-    //简单的回调
+    //实现接口
     public class main implements GenericMethod {
 
         @Override

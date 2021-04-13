@@ -8,7 +8,6 @@ package com.example.mydome;
  */
 public class MMM {
 
-
     String name;
     long size;
     String url;
