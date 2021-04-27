@@ -2,11 +2,13 @@ package com.example.mydome;
 
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
 import android.provider.Settings;
 import android.util.AttributeSet;
+import android.util.TypedValue;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -23,7 +25,7 @@ public class Mytextview extends View {
     private String mText;
     private int mTextColor = Color.BLACK;
     private int mTextSize = 15;
-
+    //画笔
     private Paint mPaint;
 
     public Mytextview(Context context) {
@@ -42,7 +44,7 @@ public class Mytextview extends View {
 
         mText = array.getString(R.styleable.Mytextview_Mytext);
         mTextColor = array.getColor(R.styleable.Mytextview_MytextColor, mTextColor);
-        mTextSize = array.getDimensionPixelSize(R.styleable.Mytextview_MytextSize, mTextSize);
+        mTextSize = array.getDimensionPixelSize(R.styleable.Mytextview_MytextSize, spTurDp(mTextSize));
 
         //回收
         array.recycle();
@@ -53,6 +55,10 @@ public class Mytextview extends View {
         mPaint.setColor(mTextColor);
         mPaint.setTextSize(mTextSize);
     }
+    private int spTurDp(int sp) {
+        return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP,sp,getResources().getDisplayMetrics());
+    }
+
 
     public Mytextview(Context context, @Nullable AttributeSet attrs, int defStyleAttr, int defStyleRes) {
         super(context, attrs, defStyleAttr, defStyleRes);
@@ -71,10 +77,9 @@ public class Mytextview extends View {
 
         //给定的wrap_content需要计算
         if (widthMode == MeasureSpec.AT_MOST) {
-
             Rect bounds = new Rect();
             mPaint.getTextBounds(mText, 0, mText.length(), bounds);
-            width=bounds.width();
+            width = bounds.width();
         }
 
         //确定的值
@@ -85,11 +90,33 @@ public class Mytextview extends View {
 
             Rect bounds = new Rect();
             mPaint.getTextBounds(mText, 0, mText.length(), bounds);
-            height=bounds.height();
+            height = bounds.height();
         }
 
-        setMeasuredDimension(width,height);
+        setMeasuredDimension(width, height);
     }
 
+    /*
+     * 用于绘制
+     * @param canvas
+     * */
 
+    @Override
+    protected void onDraw(Canvas canvas) {
+        super.onDraw(canvas);
+        /*
+         *画文本
+         * canvas.drawText();
+         * 画孤
+         * canvas.drawArc();
+         * 画园
+         * canvas.drawCircle
+         * */
+
+        //画文字  text  x  y paint
+
+        canvas.drawText(mText,0,getHeight()/2,mPaint);
+
+
+    }
 }

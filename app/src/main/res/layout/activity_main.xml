@@ -6,13 +6,16 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+    //自定义的textview
     <com.example.mydome.Mytextview
         android:layout_width="wrap_content"
         android:layout_height="200dp"
         android:background="#ff0000"
-        app:Mytext="HUI"
-        app:MytextColor="#FF0000"
+        app:Mytext="HUIrrrrrrr"
+        app:MytextColor="#FFFFFF"
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="MissingConstraints" />
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
