@@ -5,35 +5,52 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
+
     <com.scwang.smartrefresh.layout.SmartRefreshLayout
         android:id="@+id/smart"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:srlEnablePreviewInEditMode="true"
-        app:srlEnableLoadMore="true">
+        app:srlEnableLoadMore="true"
+        app:srlEnablePreviewInEditMode="true">
+
         <com.scwang.smartrefresh.layout.header.ClassicsHeader
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:srlFinishDuration="500"
-            app:srlEnableLastTime="true"
+            android:background="@color/white"
             app:srlClassicsSpinnerStyle="FixedBehind"
-            app:srlTextSizeTitle="16sp"
-            app:srlTextSizeTime="10dp"
-            app:srlTextTimeMarginTop="2dp"
             app:srlDrawableArrowSize="20dp"
-            app:srlDrawableProgressSize="20dp"
             app:srlDrawableMarginRight="20dp"
-            android:background="@color/black"
-            app:srlDrawableProgress="@drawable/ic_progress_puzzle"/>
+            app:srlDrawableProgress="@drawable/ic_progress_puzzle"
+            app:srlDrawableProgressSize="20dp"
+            app:srlEnableLastTime="true"
+            app:srlFinishDuration="500"
+            app:srlTextSizeTime="10dp"
+            app:srlTextSizeTitle="16sp"
+            app:srlTextTimeMarginTop="2dp" />
         //自定义的textview
-        <com.example.mydome.Mytextview
-            android:layout_width="wrap_content"
-            android:layout_height="200dp"
-            android:background="#ff0000"
-            app:Mytext="HUIrrrrrrr"
-            app:MytextColor="#FFFFFF"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:ignore="MissingConstraints" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <com.example.mydome.Mytextview
+                android:layout_width="wrap_content"
+                android:layout_height="200dp"
+                android:background="#ff0000"
+                app:Mytext="HUIrrrrrrr"
+                app:MytextColor="#FFFFFF"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="MissingConstraints" />
+
+            <Button
+                android:id="@+id/button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="activity2" />
+
+        </LinearLayout>
+
 
     </com.scwang.smartrefresh.layout.SmartRefreshLayout>
 

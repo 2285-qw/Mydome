@@ -3,15 +3,15 @@ plugins {
 }
 
 android {
-    compileSdkVersion 30
-    buildToolsVersion "30.0.3"
+    def version = rootProject.ext.versions
+    compileSdkVersion version.compileSdkVersion
+    buildToolsVersion version.buildToolsVersion
 
     defaultConfig {
-        applicationId "com.example.mydome"
-        minSdkVersion 24
-        targetSdkVersion 30
-        versionCode 1
-        versionName "1.0"
+        minSdkVersion version.minSdkVersion
+        targetSdkVersion version.targetSdkVersion
+        versionCode version.versionCode
+        versionName version.versionName
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -27,19 +27,35 @@ android {
         targetCompatibility JavaVersion.VERSION_1_8
     }
 
-    viewBinding {
-        enabled = true
+    buildFeatures {
+        viewBinding = true
     }
 }
 
 dependencies {
+    def dependencies = rootProject.ext.deps
+    implementation project(':frame')
 
     implementation 'androidx.appcompat:appcompat:1.2.0'
     implementation 'com.google.android.material:material:1.2.1'
-    implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.1'
+    implementation project(path: ':frame')
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    //屏幕适配
+    implementation dependencies.autosize
+
+    //retrofit2
+    api dependencies.retrofit2.retrofit
+    api dependencies.retrofit2.adapter_rxjava3
+    api dependencies.retrofit2.converter_gson
+
+    //okhttp3
+    implementation dependencies.okhttp_logging
 
     //使用框架rxjava2
     implementation "io.reactivex.rxjava2:rxjava:2.1.0"
@@ -57,5 +73,5 @@ dependencies {
     compile 'com.scwang.smartrefresh:SmartRefreshHeader:1.0.5.1'//没有使用特殊Header，可以不加这行
     compile 'com.android.support:appcompat-v7:25.3.1'//版本 23以上（必须）
 
-
+    //okhttp3
 }

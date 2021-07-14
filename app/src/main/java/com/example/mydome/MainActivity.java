@@ -2,27 +2,29 @@ package com.example.mydome;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Log;
+import android.view.View;
+
+import com.example.mydome.databinding.ActivityMainBinding;
+import com.frame.base.activity.BaseActivity;
+import com.frame.util.CustomClickListener;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends BaseActivity<ActivityMainBinding> {
+
     private static int i = 3;
-
     List list;
+    protected void init(Bundle savedInstanceState) {
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-
-        Log.d("list","=====");
-        list=getList();
-        Log.d("list",list+"=====");
+        Log.d("list", "=====");
+        //list=getList();
+        Log.d("list", list + "=====");
 
         //简单的回调
         myMethod(new main() {
@@ -35,7 +37,13 @@ public class MainActivity extends AppCompatActivity {
                 System.out.println("qqqqqqq");
             }
         });
+        viewBinding.button.setOnClickListener(new CustomClickListener() {
+            @Override
+            public void onSingleClick(View v) {
+                startActivity( new Intent(MainActivity.this, MainActivity2.class));
 
+            }
+        });
     }
 
     public static void myMethod(GenericMethod g) {
