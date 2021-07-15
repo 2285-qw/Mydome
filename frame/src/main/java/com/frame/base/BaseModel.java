@@ -52,23 +52,28 @@ public class BaseModel {
     public <B extends BaseBean> void post(String api, final Class<B> clazz) {
         Observer<ResponseBody> responseBodySubscriber = getResponseBodySubscriber(api, clazz);
         if (responseBodySubscriber == null) return;
-       /* if (mBuilder.mBaseRequestView instanceof FragmentActivity) {//绑定生命周期
+        LogUtils.d("8888888");
+        if (mBuilder.mBaseRequestView instanceof FragmentActivity) {//绑定生命周期
             mHttpRequest.post(api, CommonParam.addCommonParameter(mBuilder.mParam)).to(autoDisposable(AndroidLifecycleScopeProvider.from(((FragmentActivity) mBuilder.mBaseRequestView)))).subscribe(responseBodySubscriber);
         } else if (mBuilder.mBaseRequestView instanceof Fragment) {
             mHttpRequest.post(api, CommonParam.addCommonParameter(mBuilder.mParam)).to(autoDisposable(AndroidLifecycleScopeProvider.from(((Fragment) mBuilder.mBaseRequestView)))).subscribe(responseBodySubscriber);
         } else
-            mHttpRequest.post(api, CommonParam.addCommonParameter(mBuilder.mParam)).subscribe(responseBodySubscriber);*/
+            mHttpRequest.post(api, CommonParam.addCommonParameter(mBuilder.mParam)).subscribe(responseBodySubscriber);
     }
 
     public <B extends BaseBean> void get(String api, final Class<B> clazz) {
         Observer<ResponseBody> responseBodySubscriber = getResponseBodySubscriber(api, clazz);
+
         if (responseBodySubscriber == null) return;
         if (mBuilder.mBaseRequestView instanceof FragmentActivity) {
+            LogUtils.d("FragmentActivity");
             mHttpRequest.get(api).to(autoDisposable(AndroidLifecycleScopeProvider.from(((FragmentActivity) mBuilder.mBaseRequestView)))).subscribe(responseBodySubscriber);
         } else if (mBuilder.mBaseRequestView instanceof Fragment) {
+            LogUtils.d("Fragment");
             mHttpRequest.get(api).to(autoDisposable(AndroidLifecycleScopeProvider.from(((Fragment) mBuilder.mBaseRequestView)))).subscribe(responseBodySubscriber);
         } else
-            mHttpRequest.get(api).subscribe(responseBodySubscriber);
+            LogUtils.d("=======");
+        mHttpRequest.get(api).subscribe(responseBodySubscriber);
     }
 
     public <B extends BaseBean> void upload(String api, final Class<B> clazz) {
@@ -144,6 +149,7 @@ public class BaseModel {
             @Override
             public void onNext(ResponseBody requestBody) {
                 LogUtils.d("请求成功-----");
+                LogUtils.d(requestBody.toString());
                 try { //解析json
                     B bean = GsonUtil.getBean(requestBody.string(), clazz);
                     mIsEmpty = bean.isEmpty();

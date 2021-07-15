@@ -26,6 +26,8 @@ public class MainActivity2 extends BaseRequestActivity<ActivityMain2Binding, Add
             @Override
             public void onSingleClick(View v) {
                 mPresenter.addConcernedPeople("11");
+                showLoadingView();
+                showEmptyView();
             }
         });
 
@@ -46,7 +48,7 @@ public class MainActivity2 extends BaseRequestActivity<ActivityMain2Binding, Add
         switch (tag.toString()) {
             case "addConcernedPeople":
                 ToastUtil.showShortToast("添加成功");
-                viewBinding.text.setText(data + "66");
+                viewBinding.text.setText(data.msg+"=="+data.error + "66"+data.serverTime+data.code);
                 break;
         }
 

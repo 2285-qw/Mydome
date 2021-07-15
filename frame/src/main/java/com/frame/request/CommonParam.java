@@ -20,23 +20,23 @@ import java.util.UUID;
  * @describe 通用请求参数体
  */
 public class CommonParam {
-   /* //添加通用请求参数
+    //添加通用请求参数
     public static Map<String, Object> addCommonParameter(Map<String, Object> param) {
         String timeStamp = String.valueOf(System.currentTimeMillis() / 1000);
         String nonce = UUID.randomUUID().toString().replace("-", "");
-        String channel = ChannelUtils.getChannel();
+      /*  String channel = ChannelUtils.getChannel();*/
         String androidID = DeviceUtils.getAndroidID();
-        String uId = UserUtil.getUid();
+       /* String uId = UserUtil.getUid();*/
         Map<String, Object> mParam = new HashMap<>();
         if (param != null && !param.isEmpty())
             mParam.put("data", param);//其他参数
-        mParam.put("Uid", uId);
+        //mParam.put("Uid", uId);
         mParam.put("Timestamp", timeStamp);
         mParam.put("Nonce", nonce);
-        mParam.put("Signdata", getSignData(param, uId, timeStamp, nonce, androidID, channel));
+        //mParam.put("Signdata", getSignData(param, uId, timeStamp, nonce, androidID, channel));
         mParam.put("DeviceID", androidID);
         mParam.put("IMEI", androidID);
-        mParam.put("Channel", channel);
+        //mParam.put("Channel", channel);
         mParam.put("OSVer", DeviceUtils.getSDKVersionName());
         mParam.put("APPVer", AppUtils.getAppVersionName());
         mParam.put("IMSI", androidID);
@@ -48,7 +48,7 @@ public class CommonParam {
     }
 
     //得到加密后的数据
-    public static String getSignData(Map<String, Object> data, String uid, String timestamp, String nonce, String deviceid, String channel) {
+    /*public static String getSignData(Map<String, Object> data, String uid, String timestamp, String nonce, String deviceid, String channel) {
         Map<String, Object> treeMap = new TreeMap<>(new Comparator<String>() {
             @Override
             public int compare(String s, String t1) {
@@ -73,6 +73,5 @@ public class CommonParam {
                 temp.append("&").append(key).append("=").append(value);
         }
         return SignUtils.sign(temp.substring(1));//base64加密
-    }
-*/
+    }*/
 }

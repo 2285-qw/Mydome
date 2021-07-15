@@ -1,6 +1,7 @@
 package com.frame.bean;
 
 public class BaseBean {
+    public int code;
     public int error;
     public long serverTime;
     public String msg;

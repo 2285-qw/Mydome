@@ -18,10 +18,10 @@ public class AddCareForPt extends BasePresenter<MainActivity2> {
         LogUtils.d( "-----");
         createRequestBuilder()
                 //.putParam("Mobile", phone)
-                .setLoadStyle(BaseModel.LoadStyle.DIALOG)
+                .setLoadStyle(BaseModel.LoadStyle.VIEW)
                 .setRequestTag("addConcernedPeople")
                 .create()
-                .post(API);
+                .get(API);
         LogUtils.d( "222");
     }
 
