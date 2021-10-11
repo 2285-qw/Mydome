@@ -49,6 +49,23 @@
                 android:layout_height="wrap_content"
                 android:text="activity2" />
 
+            <Button
+                android:id="@+id/button1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="activity3" />
+
+            <Button
+                android:id="@+id/button2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="activity4" />
+
+            <com.example.mydome.ring
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+
         </LinearLayout>
 
 

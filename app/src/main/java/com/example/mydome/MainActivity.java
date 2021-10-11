@@ -20,6 +20,7 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> {
 
     private static int i = 3;
     List list;
+
     protected void init(Bundle savedInstanceState) {
 
         Log.d("list", "=====");
@@ -40,8 +41,22 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> {
         viewBinding.button.setOnClickListener(new CustomClickListener() {
             @Override
             public void onSingleClick(View v) {
-                startActivity( new Intent(MainActivity.this, MainActivity2.class));
+                startActivity(new Intent(MainActivity.this, MainActivity2.class));
 
+            }
+        });
+
+        viewBinding.button1.setOnClickListener(new CustomClickListener() {
+            @Override
+            public void onSingleClick(View v) {
+                startActivity(new Intent(MainActivity.this, MainActivity3.class));
+            }
+        });
+
+        viewBinding.button2.setOnClickListener(new CustomClickListener() {
+            @Override
+            public void onSingleClick(View v) {
+                startActivity(new Intent(MainActivity.this, MainActivity4.class));
             }
         });
     }

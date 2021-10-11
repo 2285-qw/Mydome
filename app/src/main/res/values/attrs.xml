@@ -17,4 +17,7 @@
 
         </attr>
     </declare-styleable>
+    <declare-styleable name="collapsing"></declare-styleable>
+    <declare-styleable name="collapsing_collapsing"></declare-styleable>
+    <declare-styleable name="collapsing_content"></declare-styleable>
 </resources>
