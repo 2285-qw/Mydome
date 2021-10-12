@@ -19,7 +19,7 @@ public class HomeActivity extends BaseActivity<ActivityHomeBinding> {
 
     private void initView() {
         viewBinding.button1.setOnClickListener(new MyOnClick());
-
+        viewBinding.button2.setOnClickListener(new MyOnClick());
 
     }
 
@@ -28,8 +28,10 @@ public class HomeActivity extends BaseActivity<ActivityHomeBinding> {
         public void onClick(View v) {
             switch (v.getId()) {
                 case R.id.button1:
-                    startActivity( new Intent(HomeActivity.this,NotificationActivity.class));
-
+                    startActivity(new Intent(HomeActivity.this, NotificationActivity.class));
+                    break;
+                case R.id.button2:
+                    startActivity(new Intent(mContext, DownActivity.class));
                     break;
             }
         }

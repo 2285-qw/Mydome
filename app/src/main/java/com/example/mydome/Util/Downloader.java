@@ -22,7 +22,7 @@ public class Downloader {
     private int threadsize = 3;
     //用list集合统计每个线程的下载大小
     private List<Integer> listSize;
-    //判断文件是否下载完成
+    //判断文件线程下载完成度
     private String Boolean = new String();
 
     public void download() throws Exception {
@@ -66,7 +66,8 @@ public class Downloader {
         while ('q' != quit) {
             Thread.sleep(2000);
         }*/
-
+        //判断线程是否跑完
+        Boolean count = true;
         while (true) {
             Thread.sleep(2000);
             int o = 0;
@@ -74,9 +75,20 @@ public class Downloader {
                 o += listSize.get(i);
             }
             LogUtils.d("文件下载大小" + o);
+
+            if (Boolean.length() == 3) {
+                count = false;
+                int i = Boolean.indexOf("f");
+                if (i == -1) {
+                    //下载完成
+                    LogUtils.d("下载完成");
+                } else {
+                    //下载失败
+                    LogUtils.d("下载失败");
+                }
+                count = false;
+            }
         }
-
-
     }
 
 
