@@ -24,6 +24,8 @@ public class Downloader {
     private List<Integer> listSize;
     //判断文件线程下载完成度
     private String Boolean = new String();
+    //需要下载的文件大小
+    private int filelength;
 
     public void download() throws Exception {
         listSize = new ArrayList<>(Collections.nCopies(threadsize, 0));
@@ -39,7 +41,7 @@ public class Downloader {
         conn.setConnectTimeout(5000);
         conn.setRequestMethod("GET");
         //获得需要下载的文件的长度(大小)
-        int filelength = conn.getContentLength();
+        filelength = conn.getContentLength();
         System.out.println("要下载的文件长度" + filelength);
         LogUtils.d("要下载的文件长度" + filelength);
         //生成一个大小相同的本地文件
@@ -66,16 +68,21 @@ public class Downloader {
         while ('q' != quit) {
             Thread.sleep(2000);
         }*/
+        int countSize = 0;
         //判断线程是否跑完
         Boolean count = true;
-        while (true) {
+        while (count) {
             Thread.sleep(2000);
             int o = 0;
             for (int i = 0; i < threadsize; i++) {
                 o += listSize.get(i);
             }
+            int speed = (o - countSize) / 2 / 1024;
+            LogUtils.d("当前网速为" + speed + "kb/s");
             LogUtils.d("文件下载大小" + o);
 
+            //保存前一次下载的大小和
+            countSize = o;
             if (Boolean.length() == 3) {
                 count = false;
                 int i = Boolean.indexOf("f");

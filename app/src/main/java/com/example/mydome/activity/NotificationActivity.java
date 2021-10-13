@@ -77,7 +77,6 @@ public class NotificationActivity extends AppCompatActivity implements View.OnCl
                 }).start();
 
                 NotificationManager manager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);//获取NotificationManager实例
-
                 if (Build.VERSION.SDK_INT >= 26) {//判断Android的版本
                     NotificationChannel channel = new NotificationChannel(String.valueOf(1), "name",
                             NotificationManager.IMPORTANCE_HIGH);  //当Android版本大于等于8时，创建通知渠道（Notification Channels）
@@ -91,13 +90,13 @@ public class NotificationActivity extends AppCompatActivity implements View.OnCl
                 builder.setContentTitle("正在更新...") //设置通知标题
                         .setSmallIcon(R.mipmap.ic_launcher_round)
                         .setLargeIcon(BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher_round)) //设置通知的大图标
-                        .setDefaults(Notification.DEFAULT_LIGHTS) //设置通知的提醒方式： 呼吸灯
+                        .setDefaults(Notification.FLAG_FOREGROUND_SERVICE) //设置通知的提醒方式： 呼吸灯
                         .setPriority(NotificationCompat.PRIORITY_MAX) //设置通知的优先级：最大
                         .setAutoCancel(false)//设置通知被点击一次是否自动取消
                         .setContentText("下载进度:" + "0%")
                         .setProgress(100, 0, false);
                 Notification notification = builder.build();
-                notification.flags |= Notification.FLAG_ONGOING_EVENT;
+                //notification.flags |= Notification.FLAG_ONGOING_EVENT;
                 manager.notify(1, notification);
 
 
@@ -105,7 +104,7 @@ public class NotificationActivity extends AppCompatActivity implements View.OnCl
                 builder.setContentText("下载进度:" + "20%")
                         .setProgress(100, 20, false);
                 Notification build = builder.build();
-                build.flags |= Notification.FLAG_ONGOING_EVENT;
+               // build.flags |= Notification.FLAG_ONGOING_EVENT;
                 manager.notify(1, build);
                 break;
 
