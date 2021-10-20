@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="viewModel"
+            type="com.example.mydome.mvvmdome.viewmodel.QueryWeatherViewModel" />
+    </data>
+
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".mvvmdome.activity.CeshiActivity">
+
+        <Button
+            android:id="@+id/btn_query_weather"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:enabled="@{viewModel.loading ? false : true}"
+            android:onClick="@{() -> viewModel.queryWeather()}"
+            android:text="@string/query_weather" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/btn_query_weather"
+            android:visibility="@{viewModel.loadingSuccess ? View.VISIBLE : View.GONE}">
+
+            <TextView
+                android:id="@+id/tv_city"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/city"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tv_city_value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@id/tv_city"
+                android:layout_toRightOf="@id/tv_city"
+                android:text="@{viewModel.city}"
+                tools:text="杭州" />
+
+            <TextView
+                android:id="@+id/tv_city_id"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv_city"
+                android:layout_marginTop="@dimen/query_weather_margin"
+                android:text="@string/city_id"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tv_city_id_value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@id/tv_city_id"
+                android:layout_toRightOf="@id/tv_city_id"
+                android:text="@{viewModel.cityId}"
+                tools:text="101210101" />
+
+            <TextView
+                android:id="@+id/tv_temp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv_city_id"
+                android:layout_marginTop="@dimen/query_weather_margin"
+                android:text="@string/temperature"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tv_temp1_value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@id/tv_temp"
+                android:layout_toRightOf="@id/tv_temp"
+                android:text="@{viewModel.temp1}"
+                tools:text="5℃" />
+
+            <TextView
+                android:id="@+id/tv_tilde"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@id/tv_temp"
+                android:layout_toRightOf="@id/tv_temp1_value"
+                android:text="@string/tilde" />
+
+            <TextView
+                android:id="@+id/tv_temp2_value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@id/tv_temp"
+                android:layout_toRightOf="@id/tv_tilde"
+                android:text="@{viewModel.temp2}"
+                tools:text="10℃" />
+
+            <TextView
+                android:id="@+id/tv_weather"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv_temp"
+                android:layout_marginTop="@dimen/query_weather_margin"
+                android:text="@string/weather"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tv_weather_value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@id/tv_weather"
+                android:layout_toRightOf="@id/tv_weather"
+                android:text="@{viewModel.weather}"
+                tools:text="晴" />
+
+            <TextView
+                android:id="@+id/tv_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv_weather"
+                android:layout_marginTop="@dimen/query_weather_margin"
+                android:text="@string/release_time"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tv_time_value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@id/tv_time"
+                android:layout_toRightOf="@id/tv_time"
+                android:text="@{viewModel.time}"
+                tools:text="10:00" />
+
+        </RelativeLayout>
+
+
+        <ProgressBar
+            android:id="@+id/pb_progress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:visibility="@{viewModel.loading ? View.VISIBLE : View.GONE}" />
+
+        <TextView
+            android:id="@+id/tv_query_failure"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="@string/query_failure"
+            android:visibility="@{viewModel.loadingFailure ? View.VISIBLE : View.GONE}" />
+
+    </RelativeLayout>
+
+</layout>

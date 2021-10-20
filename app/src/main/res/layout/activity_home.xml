@@ -27,6 +27,19 @@
                 android:layout_height="wrap_content"
                 android:text="下载功能实现" />
 
+            <Button
+                android:id="@+id/button3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="MVVM框架dome" />
+
+            <Button
+                android:id="@+id/button4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="测试" />
+
+
         </LinearLayout>
 
     </androidx.core.widget.NestedScrollView>
