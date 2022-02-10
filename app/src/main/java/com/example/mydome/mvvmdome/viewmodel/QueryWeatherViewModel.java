@@ -48,7 +48,7 @@ public class QueryWeatherViewModel {
 
     }
 
-    public void queryWeather() {
+    public void queryWeather() { 
         loading.set(true);
         loadingSuccess.set(false);
         loadingFailure.set(false);

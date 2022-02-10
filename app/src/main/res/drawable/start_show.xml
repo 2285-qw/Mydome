@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<animation-list xmlns:android="http://schemas.android.com/apk/res/android"
+    android:oneshot="false">
+    <item
+        android:drawable="@drawable/while_left_icon"
+        android:duration="100" />
+
+    <item
+        android:drawable="@drawable/vip_icon_left"
+        android:duration="100" />
+    <item
+        android:drawable="@drawable/vip_icon_right"
+        android:duration="100" />
+    <item
+        android:drawable="@drawable/vip_introduce"
+        android:duration="100" />
+
+</animation-list>

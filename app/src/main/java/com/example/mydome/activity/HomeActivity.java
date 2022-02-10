@@ -24,6 +24,10 @@ public class HomeActivity extends BaseActivity<ActivityHomeBinding> {
         viewBinding.button2.setOnClickListener(new MyOnClick());
         viewBinding.button3.setOnClickListener(new MyOnClick());
         viewBinding.button4.setOnClickListener(new MyOnClick());
+        viewBinding.button5.setOnClickListener(new MyOnClick());
+        viewBinding.button6.setOnClickListener(new MyOnClick());
+        viewBinding.button7.setOnClickListener(new MyOnClick());
+        viewBinding.button8.setOnClickListener(new MyOnClick());
 
     }
 
@@ -43,6 +47,20 @@ public class HomeActivity extends BaseActivity<ActivityHomeBinding> {
                 case R.id.button4:
                     startActivity(new Intent(mContext, CeshiActivity.class));
                     break;
+                case R.id.button5:
+                    startActivity(new Intent(mContext, ViewActivity.class));
+                    break;
+                case R.id.button6:
+                    startActivity(new Intent(mContext, FrameAnimationActivity.class));
+                    break;
+                case R.id.button7:
+                    startActivity(new Intent(mContext, TweenAnimationActivity.class));
+                    break;
+                case R.id.button8:
+                    startActivity(new Intent(mContext, PropertyAnimationActivity.class));
+                    break;
+
+
             }
         }
     }
