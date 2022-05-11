@@ -44,9 +44,7 @@ public class DownActivity extends BaseActivity<ActivityDownBinding> {
 
     @Override
     protected void init(Bundle savedInstanceState) {
-
         initView();
-
     }
 
     private void initView() {
@@ -59,7 +57,6 @@ public class DownActivity extends BaseActivity<ActivityDownBinding> {
         public void onClick(View v) {
             switch (v.getId()) {
                 case R.id.start:
-
                     manager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);//获取NotificationManager实例
                     if (Build.VERSION.SDK_INT >= 26) {//判断Android的版本
                         NotificationChannel channel = new NotificationChannel(String.valueOf(1), "name",
@@ -83,7 +80,6 @@ public class DownActivity extends BaseActivity<ActivityDownBinding> {
                     notification.flags |= Notification.FLAG_ONGOING_EVENT;
                     manager.notify(2, notification);
 
-
                     DownLoad();
 
 
@@ -97,7 +93,7 @@ public class DownActivity extends BaseActivity<ActivityDownBinding> {
 
     private void DownLoad() {
         String filename = "single-test.apk";
-        String url = "http://149.129.147.59:8208/download/new-retail.apk";
+        String url = "https://tenfei05.cfp.cn/creative/vcg/veer/1600water/veer-151439349.jpg";
         File parentFile = DemoUtil.getParentFile(this);
 
         task = new DownloadTask.Builder(url, parentFile)

@@ -19,6 +19,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Mydome">
         <activity
+            android:name=".activity.OOSalyActivity"
+            android:exported="false" />
+        <activity
             android:name=".activity.PropertyAnimationActivity"
             android:exported="false" />
         <activity

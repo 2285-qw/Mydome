@@ -14,9 +14,7 @@ public class HomeActivity extends BaseActivity<ActivityHomeBinding> {
 
     @Override
     protected void init(Bundle savedInstanceState) {
-
         initView();
-
     }
 
     private void initView() {
@@ -28,6 +26,7 @@ public class HomeActivity extends BaseActivity<ActivityHomeBinding> {
         viewBinding.button6.setOnClickListener(new MyOnClick());
         viewBinding.button7.setOnClickListener(new MyOnClick());
         viewBinding.button8.setOnClickListener(new MyOnClick());
+        viewBinding.button9.setOnClickListener(new MyOnClick());
 
     }
 
@@ -58,6 +57,9 @@ public class HomeActivity extends BaseActivity<ActivityHomeBinding> {
                     break;
                 case R.id.button8:
                     startActivity(new Intent(mContext, PropertyAnimationActivity.class));
+                    break;
+                case R.id.button9:
+
                     break;
 
 
