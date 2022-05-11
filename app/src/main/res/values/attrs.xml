@@ -3,21 +3,33 @@
     <!--自定义Mytextview属性-->
     <declare-styleable name="Mytextview">\
         <!--name 属性名称 format 属性格式-->
-        <attr name="Mytext" format="string"/>
-        <attr name="MytextColor" format="color"/>
-        <attr name="MytextSize" format="dimension"/>
-        <attr name="MymaxLength" format="integer"/>
-        <attr name="MyBackgound" format="reference|color"/>
+        <attr name="Mytext" format="string" />
+        <attr name="MytextColor" format="color" />
+        <attr name="MytextSize" format="dimension" />
+        <attr name="MymaxLength" format="integer" />
+        <attr name="MyBackgound" format="reference|color" />
 
         <!--枚举-->
         <attr name="MyinputType">
-            <enum name="number" value="1"/>
-            <enum name="text" value="2"/>
-            <enum name="password" value="3"/>
+            <enum name="number" value="1" />
+            <enum name="text" value="2" />
+            <enum name="password" value="3" />
 
         </attr>
     </declare-styleable>
     <declare-styleable name="collapsing"></declare-styleable>
     <declare-styleable name="collapsing_collapsing"></declare-styleable>
     <declare-styleable name="collapsing_content"></declare-styleable>
+    <declare-styleable name="RookieView">
+            <attr name="Rook_content" format="string" />
+            <attr name="Rook_isShow" format="boolean" />
+            <attr name="Rook_background" format="color" />
+            <attr name="Rook_select">
+                <flag name="s1" value="1" />
+                <flag name="s2" value="2" />
+                <flag name="s3" value="3" />
+            </attr>
+    </declare-styleable>
+
+
 </resources>
