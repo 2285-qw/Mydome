@@ -9,6 +9,7 @@ import android.graphics.Path;
 import android.graphics.RectF;
 import android.util.AttributeSet;
 import android.view.View;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 
@@ -54,9 +55,29 @@ public class MyView extends View {
         canvas.drawRoundRect(new RectF(210, 10, 410, 110), 15, 15, mPaint); //画圆角矩形
         canvas.drawOval(new RectF(200, 200, 400, 500), mPaint); //画椭圆
 */
-
         extracted1(canvas);
 
+    }
+
+    @Override
+    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+        setMeasuredDimension(getWidth(widthMeasureSpec), 200);
+
+    }
+
+    private int getWidth(int widthMeasureSpec) {
+        int mode = MeasureSpec.getMode(widthMeasureSpec);
+        int size = MeasureSpec.getSize(widthMeasureSpec);
+        int baseWidth = 200;
+        switch (mode) {
+            case MeasureSpec.AT_MOST:
+                return Math.min(size, baseWidth);
+            case MeasureSpec.EXACTLY:
+            case MeasureSpec.UNSPECIFIED:
+                return size;
+        }
+        return 0;
     }
 
     //绘制多边形
